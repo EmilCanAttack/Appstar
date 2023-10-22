@@ -26,7 +26,6 @@ const SignUp = ({ navigation }) => {
 
   // Funktion til at håndtere log ind.
   const handleLogin = async () => {
-    // Tilføj log ud-logik her, f.eks. sletning af AsyncStorage-data.
 
     // Naviger tilbage til Tilmeld Dig-skærmen eller en anden skærm baseret på din logik.
     navigation.navigate('Login');
