@@ -27,6 +27,7 @@ const Home = ({ navigation }) => {
         <Text style={styles.title}>Welcome to the Homepage</Text>
         <Button title="Ledige Kampe" onPress={() => navigation.navigate('LedigeKampe')} />
         <Button title="Forum" onPress={() => navigation.navigate('Forum')} />
+        <Button title="Resultater" onPress={() => navigation.navigate('Resultater')} />
         <Button title="Log Out" onPress={handleLogout} />
       </View>
     </ImageBackground>
