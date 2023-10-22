@@ -27,7 +27,7 @@ const SignUp = ({ navigation }) => {
   // Funktion til at håndtere log ind.
   const handleLogin = async () => {
 
-    // Naviger tilbage til Tilmeld Dig-skærmen eller en anden skærm baseret på din logik.
+    // Naviger tilbage til Tilmeld Dig-skærmen 
     navigation.navigate('Login');
   };
 

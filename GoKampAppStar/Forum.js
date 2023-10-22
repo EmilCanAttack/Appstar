@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, TextInput, StyleSheet, ImageBackground } from 'react-native';
 
+// Data for klubber og deres statusser.
 const klubberData = [
   {
     id: 1,
@@ -12,41 +13,17 @@ const klubberData = [
       { id: 2, text: "Hvad er der sket med jeres tideligere målmand?", user: "Zaid" },
     ],
   },
-  {
-    id: 2,
-    klubnavn: "Albertslund Idrætsforening",
-    status: "Vi træner hver torsdag kl. 18:00. Kom og vær med!",
-    likes: 10,
-    comments: [
-      { id: 3, text: "Kan jeg deltage som nybegynder?", user: "Peter" },
-      { id: 4, text: "Hej Peter. Desværre nej 😢", user: "Lasse" },
-    ],
-  },
-  {
-    id: 3,
-    klubnavn: "Lars",
-    status: "Nogen som har en bane til rådighed? Vi fra FHF mangler et sted at træne",
-    likes: 2,
-    comments: [
-        { id: 5, text: "Gadehavegård plejer at stå tomt", user: "Mikkel" },
-    ],
-  },
-  {
-    id: 4,
-    klubnavn: "Søren Dollerup",
-    status: "Vi hos FCK søger frivillige trænere til vores ungdomshold. Kom og hjælp med at udvikle vores talenter!",
-    likes: 7,
-    comments: [],
-  },
-  // Tilføj flere klubber og deres statusser efter behov
+  // ... Tilføj flere klubber og statusser efter behov.
 ];
 
 const Forum = () => {
+  // Tilstande til at administrere data og inputfelter.
   const [klubber, setKlubber] = useState(klubberData);
   const [commentText, setCommentText] = useState("");
   const [username, setUsername] = useState("");
   const [statusText, setStatusText] = useState("");
 
+  // Funktion til at håndtere "Like" på en klub-status.
   const handleLike = (klubId) => {
     const updatedKlubber = klubber.map((klub) => {
       if (klub.id === klubId) {
@@ -58,6 +35,7 @@ const Forum = () => {
     setKlubber(updatedKlubber);
   };
 
+  // Funktion til at håndtere at tilføje en kommentar til en klub-status.
   const handleComment = (klubId, comment) => {
     if (!username) {
       return;
@@ -75,6 +53,7 @@ const Forum = () => {
     setCommentText("");
   };
 
+  // Funktion til at oprette en ny klub-status.
   const handleCreateStatus = () => {
     if (!username || !statusText) {
       return;
@@ -94,24 +73,29 @@ const Forum = () => {
   };
 
   return (
+    // Brug et baggrundsbillede til hele skærmen.
     <ImageBackground source={require('./assets/wfu.webp')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.title}>Klubbernes Forum</Text>
         <View style={styles.statusInputContainer}>
+          {/* Inputfelt til statusbeskeder. */}
           <TextInput
             placeholder="Hvad har du på hjertet?..."
             onChangeText={(text) => setStatusText(text)}
             value={statusText}
           />
+          {/* Inputfelt til brugernavn. */}
           <TextInput
             placeholder="Navn"
             onChangeText={(text) => setUsername(text)}
             value={username}
           />
+          {/* Knap til at oprette en ny status. */}
           <TouchableOpacity onPress={handleCreateStatus}>
             <Text>Opret Status</Text>
           </TouchableOpacity>
         </View>
+        {/* Liste af klub-statusser med "Like" og kommentarer. */}
         <FlatList
           data={klubber}
           keyExtractor={(item) => item.id.toString()}
@@ -125,20 +109,24 @@ const Forum = () => {
               </TouchableOpacity>
               {item.comments.map((comment) => (
                 <View key={comment.id} style={styles.commentContainer}>
+                  {/* Kommentarer til klub-statussen. */}
                   <Text style={styles.commentText}>{comment.user}: {comment.text}</Text>
                 </View>
               ))}
               <View style={styles.commentInputContainer}>
+                {/* Inputfelt til at tilføje en kommentar. */}
                 <TextInput
                   placeholder="Skriv en kommentar..."
                   onChangeText={(text) => setCommentText(text)}
                   value={commentText}
                 />
+                {/* Inputfelt til brugernavn. */}
                 <TextInput
                   placeholder="Dit brugernavn"
                   onChangeText={(text) => setUsername(text)}
                   value={username}
                 />
+                {/* Knap til at sende en kommentar. */}
                 <TouchableOpacity
                   onPress={() => handleComment(item.id, commentText)}
                 >
@@ -154,6 +142,7 @@ const Forum = () => {
 };
 
 const styles = StyleSheet.create({
+  // Stilark for forskellige elementer i komponenten.
   container: {
     flex: 1,
     padding: 16,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, ImageBackground } from 'react-native';
-
+//Masser af hardcoding for at demonstrere et eksempel
 const kampe = [
   {
     klub1Logo: require('./assets/fck.png'),
@@ -38,13 +38,13 @@ const kampe = [
     resultat: '2 - 0',
     lokation: 'Farum Park',
   },
-  // Tilføj flere kampe efter behov
+ 
 ];
 
 const Resultater = () => {
   return (
     <ImageBackground
-      source={require('./assets/blackbane.jpeg')} // Erstat med stien til dit baggrundsbillede
+      source={require('./assets/blackbane.jpeg')} 
       style={styles.backgroundImage}
     >
       <ScrollView contentContainerStyle={styles.container}>
