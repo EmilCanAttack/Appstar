@@ -121,7 +121,7 @@ const Forum = () => {
               <Text style={styles.status}>{item.status}</Text>
               <Text style={styles.likes}>Likes: {item.likes}</Text>
               <TouchableOpacity onPress={() => handleLike(item.id)}>
-                <Text>Like</Text>
+                <Text>👍</Text>
               </TouchableOpacity>
               {item.comments.map((comment) => (
                 <View key={comment.id} style={styles.commentContainer}>
