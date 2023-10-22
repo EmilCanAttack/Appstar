@@ -12,6 +12,7 @@ import {
   ImageBackground,
 } from 'react-native';
 
+// Data til at vise ledige kampe (eksempler).
 const data = [
   {
     id: 1,
@@ -24,35 +25,20 @@ const data = [
     kontakt: 'Emil Can Atan, Nr. 83 91 03 45',
     adresse: 'Gadehavegårdsvej 1, 2630 Taastrup',
   },
-  {
-    id: 2,
-    logo: require('./assets/fhf.png'),
-    dato: '17/11 Kl. 19:00',
-    division: 'Division 4',
-    antalSpillere: '11 mand',
-    kontakt: 'Lars Dahl, Nr. 23 56 43 12',
-    klubnavn: 'Fløng-Hedehusene Fodbold',
-    tomtekst: '',
-    adresse: 'Stenbuen 34, 2640 Hedehusene',
-  },
+  // ... tilføj flere kampoplysninger som nødvendigt.
 ];
 
+// Logoer og navne på klubber i Sjælland og Jylland (eksempler).
 const sjællandClubs = [
   { name: 'Hvidovre IF.', logo: require('./assets/hif.png') },
   { name: 'Brøndby IF.', logo: require('./assets/bif.png') },
-  { name: 'FC. København', logo: require('./assets/fck.png') },
-  { name: 'Fløng-Hedehusene Fodbold', logo: require('./assets/fhf.png') },
-  { name: 'Taastrup IF.', logo: require('./assets/tif.png') },
-  // Tilføj flere klubber og deres logoer på Sjælland efter behov
+  // ... tilføj flere klubber og logoer i Sjælland.
 ];
 
 const jyllandClubs = [
   { name: 'FC. Midtjylland ', logo: require('./assets/fcm.png') },
   { name: 'Randers FC.', logo: require('./assets/rfc.png') },
-  { name: 'Aalborg BK', logo: require('./assets/aab.png') },
-  { name: 'FC. Nordsjælland', logo: require('./assets/fcn.png') },
-  { name: 'Aarhus GF.', logo: require('./assets/agf.png') },
-  // Tilføj de 5 største klubber i Jylland
+  // ... tilføj de 5 største klubber i Jylland.
 ];
 
 const LedigeKampe = () => {
@@ -68,14 +54,17 @@ const LedigeKampe = () => {
   });
   const [selectedRegion, setSelectedRegion] = useState(null);
 
+  // Funktion til at vælge en klub for et hold.
   const handleClubSelect = (club) => {
-    setHoldInfo({ ...holdInfo, selectedClub: club, logo: club.logo }); // Gem også klublogoet i holdInfo
+    setHoldInfo({ ...holdInfo, selectedClub: club, logo: club.logo });
   };
 
+  // Funktion til at behandle indsendelse af holdoplysninger.
   const handleSubmit = () => {
-    // Gem holdInfo i dataarrayet eller send det til en server (afhængigt af din backend-logik)
-    const id = data.length + 1; // Generer en unik ID (du kan bruge en bedre metode)
+    // Gem holdInfo i dataarrayet eller send det til en server (afhængigt af din backend-logik).
+    const id = data.length + 1; // Generer en unik ID (du kan bruge en bedre metode).
     data.push({ id, ...holdInfo });
+    // Nulstil holdoplysningerne.
     setHoldInfo({
       klubnavn: '',
       dato: '',
@@ -84,17 +73,20 @@ const LedigeKampe = () => {
       kontakt: '',
       adresse: '',
       selectedClub: null,
-      logo: null, // Nulstil logo
+      logo: null, // Nulstil logo.
     });
     setSelectedRegion(null);
-    setModalVisible(false); // Luk modalen efter indsendelse
+    setModalVisible(false); // Luk modalen efter indsendelse.
   };
 
   return (
+    // Brug et baggrundsbillede til hele skærmen.
     <ImageBackground source={require('./assets/sortbane.jpeg')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.title}>Ledige Kampe</Text>
         <Button title="Tilmeld Hold" onPress={() => setModalVisible(true)} />
+
+        {/* Vis en liste over ledige kampe fra dataarrayet. */}
         <FlatList
           data={data}
           keyExtractor={(item) => item.id.toString()}
@@ -111,10 +103,14 @@ const LedigeKampe = () => {
             </View>
           )}
         />
+
+        {/* Modal til at indsende holdoplysninger. */}
         <Modal visible={modalVisible} transparent animationType="slide">
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
               <Text style={styles.modalTitle}>Tilmeld Hold</Text>
+
+              {/* Inputfelter til at indtaste holdoplysninger. */}
               <View style={styles.formGroup}>
                 <Text style={styles.label}>Klubnavn:</Text>
                 <TextInput
@@ -169,9 +165,12 @@ const LedigeKampe = () => {
                   onChangeText={(text) => setHoldInfo({ ...holdInfo, adresse: text })}
                 />
               </View>
+
               <Text style={styles.label}>Vælg klubbens logo:</Text>
               <Button title="Sjælland" onPress={() => setSelectedRegion(sjællandClubs)} />
               <Button title="Jylland" onPress={() => setSelectedRegion(jyllandClubs)} />
+
+              {/* Vis klubber i den valgte region til at vælge et klublogo. */}
               {selectedRegion && (
                 <FlatList
                   data={selectedRegion}
@@ -197,6 +196,7 @@ const LedigeKampe = () => {
 };
 
 const styles = StyleSheet.create({
+  // Stilark for forskellige elementer i komponenten.
   container: {
     flex: 1,
     padding: 16,
@@ -208,11 +208,11 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   itemContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Gennemsigtig hvid baggrund
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Gennemsigtig hvid baggrund.
     padding: 10,
     marginBottom: 10,
     borderRadius: 5,
-    alignItems: 'center', // Centrer indhold vandret
+    alignItems: 'center', // Centrer indhold vandret.
   },
   logo: {
     width: 100,
