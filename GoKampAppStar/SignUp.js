@@ -3,55 +3,64 @@ import { View, Text, TextInput, TouchableOpacity, ImageBackground, StyleSheet } 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignUp = ({ navigation }) => {
+  // State til at opbevare brugerens email og adgangskode.
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // Funktion til at håndtere tilmelding.
   const handleSignUp = async () => {
+    // Tjek om både email og adgangskode er udfyldt, og vis en fejlbesked hvis ikke.
     if (!email || !password) {
-      // Check if either email or password is empty, and display an error message if true.
-      alert('Both email and password are required.');
+      alert('Både email og adgangskode er påkrævet.');
       return;
     }
 
-    // If both email and password are provided, proceed with sign-up.
-    // Save user information in AsyncStorage as JSON.
+    // Hvis både email og adgangskode er angivet, fortsæt med tilmeldingen.
+    // Gem brugeroplysninger i AsyncStorage som JSON.
     const user = { email, password };
     await AsyncStorage.setItem('user', JSON.stringify(user));
 
-    // Navigate to the Login screen.
+    // Naviger til Log Ind-skærmen.
     navigation.navigate('Login');
   };
 
+  // Funktion til at håndtere log ind.
   const handleLogin = async () => {
-    // Add logout logic here, for example, clearing AsyncStorage data.
+    // Tilføj log ud-logik her, f.eks. sletning af AsyncStorage-data.
 
-    // Navigate back to the SignUp screen or another screen based on your logic.
+    // Naviger tilbage til Tilmeld Dig-skærmen eller en anden skærm baseret på din logik.
     navigation.navigate('Login');
   };
 
   return (
+    // Brug et baggrundsbillede til hele skærmen.
     <ImageBackground source={require('./assets/boldmørk.webp')} style={styles.backgroundImage}>
       <View style={styles.container}>
-        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.title}>Tilmeld Dig</Text>
+        {/* Inputfelt til email. Brugerværdi er bundet til "email" via "value" og opdateres ved ændringer. */}
         <TextInput
           style={styles.input}
           placeholder="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
+        {/* Inputfelt til adgangskode. Brugerværdi er bundet til "password" via "value" og opdateres ved ændringer. */}
         <TextInput
           style={styles.input}
-          placeholder="Password"
+          placeholder="Adgangskode"
           value={password}
           onChangeText={(text) => setPassword(text)}
-          secureTextEntry
+          secureTextEntry // Skjul adgangskoden med stjerner
         />
+        {/* "Tilmeld" knap udløser "handleSignUp" funktionen ved tryk. */}
         <TouchableOpacity style={styles.signupButton} onPress={handleSignUp}>
-          <Text style={styles.buttonText}>Sign Up</Text>
+          <Text style={styles.buttonText}>Tilmeld</Text>
         </TouchableOpacity>
-        <Text style={styles.loginText}>Already on Go' Kamp?</Text>
+        {/* Tekst, der opfordrer brugere til at logge ind, hvis de allerede har en konto. */}
+        <Text style={styles.loginText}>Allerede på Go' Kamp?</Text>
+        {/* "Log Ind" knap, der udløser "handleLogin" funktionen ved tryk. */}
         <TouchableOpacity onPress={handleLogin}>
-          <Text style={styles.loginButton}>Log In</Text>
+          <Text style={styles.loginButton}>Log Ind</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
