@@ -2,8 +2,29 @@ import React, { useState } from 'react';
 import { View, Text, Image, FlatList, Modal, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
 
 const data = [
-  // Tidligere data her...
-];
+    {
+      id: 1,
+      logo: require('./assets/stadium.jpeg'),
+      klubnavn: "Taastrup Idrætsforening",
+      tomtekst: "",
+      dato: '17/11 Kl. 19:30',
+      division: 'Motionsrækken',
+      antalSpillere: '8 mand',
+      kontakt: "Emil Can Atan, (+45) 83 91 03 45",
+      adresse: "Gadehavegårdsvej 1, 2630 Taastrup",
+    },
+    {
+      id: 2,
+      logo: require('./assets/stadium.jpeg'),
+      dato: '15/11 Kl. 19:00',
+      division: 'Division 4',
+      antalSpillere: '11 mand',
+      kontakt: "Lars Dahl, (+45) 23 56 43 12",
+      klubnavn: "Albertslund Idrætsforening",
+      tomtekst: "",
+      adresse: "Skallerne 14, 2620 Albertslund",
+    },
+  ];
 
 const sjællandClubs = [
   { name: 'Klub 1', logo: require('./assets/stadium.jpeg') },
