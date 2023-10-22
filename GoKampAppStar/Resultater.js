@@ -26,7 +26,7 @@ const kampe = [
 const Resultater = () => {
   return (
     <ImageBackground
-      source={require('./assets/sky.jpeg')} // Erstat med stien til dit baggrundsbillede
+      source={require('./assets/blackbane.jpeg')} // Erstat med stien til dit baggrundsbillede
       style={styles.backgroundImage}
     >
       <ScrollView contentContainerStyle={styles.container}>
