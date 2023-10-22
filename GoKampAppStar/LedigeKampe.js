@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, FlatList, Modal, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, Modal, TextInput, Button, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 
 const data = [
     {
@@ -79,106 +79,111 @@ const LedigeKampe = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Ledige Kampe</Text>
-      <Button title="Tilmeld Hold" onPress={() => setModalVisible(true)} />
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
-            <Image source={item.selectedClub ? item.selectedClub.logo : require('./assets/stadium.jpeg')} style={styles.logo} />
-            <Text>{item.klubnavn}</Text>
-            <Text>{item.tomtekst}</Text>
-            <Text>Vil gerne spille d. {item.dato} </Text>
-            <Text>Division: {item.division}</Text>
-            <Text>Antal mand: {item.antalSpillere}</Text>
-            <Text>Adresse: {item.adresse}</Text>
-            <Text>Kontakt: {item.kontakt}</Text>
+    <ImageBackground
+      source={require('./assets/sortbane.jpeg')} // Tilføj stien til dit baggrundsbillede
+      style={styles.backgroundImage}
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>Ledige Kampe</Text>
+        <Button title="Tilmeld Hold" onPress={() => setModalVisible(true)} />
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.itemContainer}>
+              <Image source={item.selectedClub ? item.selectedClub.logo : require('./assets/stadium.jpeg')} style={styles.logo} />
+              <Text style={styles.text}>{item.klubnavn}</Text>
+              <Text style={styles.text}>{item.tomtekst}</Text>
+              <Text style={styles.text}>Vil gerne spille d. {item.dato} </Text>
+              <Text style={styles.text}>Division: {item.division}</Text>
+              <Text style={styles.text}>Antal mand: {item.antalSpillere}</Text>
+              <Text style={styles.text}>Adresse: {item.adresse}</Text>
+              <Text style={styles.text}>Kontakt: {item.kontakt}</Text>
+            </View>
+          )}
+        />
+        <Modal visible={modalVisible} transparent animationType="slide">
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>Tilmeld Hold</Text>
+              <View style={styles.formGroup}>
+                <Text style={styles.label}>Klubnavn:</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Indtast klubnavn"
+                  value={holdInfo.klubnavn}
+                  onChangeText={(text) => setHoldInfo({ ...holdInfo, klubnavn: text })}
+                />
+              </View>
+              <View style={styles.formGroup}>
+                <Text style={styles.label}>Dato:</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Indtast dato"
+                  value={holdInfo.dato}
+                  onChangeText={(text) => setHoldInfo({ ...holdInfo, dato: text })}
+                />
+              </View>
+              <View style={styles.formGroup}>
+                <Text style={styles.label}>Division:</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Indtast division"
+                  value={holdInfo.division}
+                  onChangeText={(text) => setHoldInfo({ ...holdInfo, division: text })}
+                />
+              </View>
+              <View style={styles.formGroup}>
+                <Text style={styles.label}>Antal Spillere:</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Indtast antal spillere"
+                  value={holdInfo.antalSpillere}
+                  onChangeText={(text) => setHoldInfo({ ...holdInfo, antalSpillere: text })}
+                />
+              </View>
+              <View style={styles.formGroup}>
+                <Text style={styles.label}>Kontakt:</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Indtast kontaktinformation"
+                  value={holdInfo.kontakt}
+                  onChangeText={(text) => setHoldInfo({ ...holdInfo, kontakt: text })}
+                />
+              </View>
+              <View style={styles.formGroup}>
+                <Text style={styles.label}>Adresse:</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Indtast adresse"
+                  value={holdInfo.adresse}
+                  onChangeText={(text) => setHoldInfo({ ...holdInfo, adresse: text })}
+                />
+              </View>
+              <Text style={styles.label}>Vælg Region:</Text>
+              <Button title="Sjælland" onPress={() => setSelectedRegion(sjællandClubs)} />
+              <Button title="Jylland" onPress={() => setSelectedRegion(jyllandClubs)} />
+              {selectedRegion && (
+                <FlatList
+                  data={selectedRegion}
+                  keyExtractor={(item) => item.name}
+                  renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => handleClubSelect(item)}>
+                      <View style={styles.cityOption}>
+                        <Image source={item.logo} style={styles.cityLogo} />
+                        <Text style={styles.text}>{item.name}</Text>
+                      </View>
+                    </TouchableOpacity>
+                  )}
+                />
+              )}
+              <Button title="Tilmeld" onPress={handleSubmit} />
+              <Button title="Annuller" onPress={() => setModalVisible(false)} />
+            </View>
           </View>
-        )}
-      />
-      <Modal visible={modalVisible} transparent animationType="slide">
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Tilmeld Hold</Text>
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Klubnavn:</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Indtast klubnavn"
-                value={holdInfo.klubnavn}
-                onChangeText={(text) => setHoldInfo({ ...holdInfo, klubnavn: text })}
-              />
-            </View>
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Dato:</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Indtast dato"
-                value={holdInfo.dato}
-                onChangeText={(text) => setHoldInfo({ ...holdInfo, dato: text })}
-              />
-            </View>
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Division:</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Indtast division"
-                value={holdInfo.division}
-                onChangeText={(text) => setHoldInfo({ ...holdInfo, division: text })}
-              />
-            </View>
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Antal Spillere:</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Indtast antal spillere"
-                value={holdInfo.antalSpillere}
-                onChangeText={(text) => setHoldInfo({ ...holdInfo, antalSpillere: text })}
-              />
-            </View>
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Kontakt:</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Indtast kontaktinformation"
-                value={holdInfo.kontakt}
-                onChangeText={(text) => setHoldInfo({ ...holdInfo, kontakt: text })}
-              />
-            </View>
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Adresse:</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Indtast adresse"
-                value={holdInfo.adresse}
-                onChangeText={(text) => setHoldInfo({ ...holdInfo, adresse: text })}
-              />
-            </View>
-            <Text style={styles.label}>Vælg Region:</Text>
-            <Button title="Sjælland" onPress={() => setSelectedRegion(sjællandClubs)} />
-            <Button title="Jylland" onPress={() => setSelectedRegion(jyllandClubs)} />
-            {selectedRegion && (
-              <FlatList
-                data={selectedRegion}
-                keyExtractor={(item) => item.name}
-                renderItem={({ item }) => (
-                  <TouchableOpacity onPress={() => handleClubSelect(item)}>
-                    <View style={styles.cityOption}>
-                      <Image source={item.logo} style={styles.cityLogo} />
-                      <Text>{item.name}</Text>
-                    </View>
-                  </TouchableOpacity>
-                )}
-              />
-            )}
-            <Button title="Tilmeld" onPress={handleSubmit} />
-            <Button title="Annuller" onPress={() => setModalVisible(false)} />
-          </View>
-        </View>
-      </Modal>
-    </View>
+        </Modal>
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -190,12 +195,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     marginBottom: 10,
+    textAlign: 'center',
   },
   itemContainer: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Gennemsigtig hvid baggrund
     padding: 10,
     marginBottom: 10,
     borderRadius: 5,
+    alignItems: 'center', // Centrer indhold vandret
   },
   logo: {
     width: 100,
@@ -240,6 +247,15 @@ const styles = StyleSheet.create({
     height: 30,
     resizeMode: 'contain',
     marginRight: 10,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 

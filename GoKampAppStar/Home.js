@@ -20,7 +20,7 @@ const Home = ({ navigation }) => {
 
   return (
     <ImageBackground
-      source={require('./assets/stadium.jpeg')}
+      source={require('./assets/boldlys.jpeg')}
       style={styles.backgroundImage}
     >
       <View style={styles.container}>
