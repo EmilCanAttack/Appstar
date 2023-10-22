@@ -37,7 +37,8 @@ const SignUp = ({ navigation }) => {
       />
       <Button title="Sign Up" onPress={handleSignUp} />
       <Text></Text>
-      <Button title="Jeg har en eksisterende bruger" onPress={handleLogin} />
+      <Text>Er du allerede på Go' Kamp?</Text>
+      <Button title="Log Ind" onPress={handleLogin} />
     </View>
   );
 };

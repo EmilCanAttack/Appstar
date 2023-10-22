@@ -42,6 +42,7 @@ const Forum = () => {
   const [klubber, setKlubber] = useState(klubberData);
   const [commentText, setCommentText] = useState("");
   const [username, setUsername] = useState(""); // Tilføj en state til at opbevare brugernavnet
+  const [statusText, setStatusText] = useState(""); // Tilføj en state til at opbevare brugernes egne opslag
 
   const handleLike = (klubId) => {
     const updatedKlubber = klubber.map((klub) => {
@@ -72,9 +73,43 @@ const Forum = () => {
     setCommentText("");
   };
 
+  const handleCreateStatus = () => {
+    if (!username || !statusText) {
+      // Vis en fejlbesked eller bloker handlingen, hvis brugernavn eller status ikke er angivet
+      return;
+    }
+
+    const newStatus = {
+      id: klubber.length + 1,
+      klubnavn: username,
+      status: statusText,
+      likes: 0,
+      comments: [],
+    };
+
+    setKlubber([newStatus, ...klubber]);
+    setUsername("");
+    setStatusText("");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Klubbernes Forum</Text>
+      <View style={styles.statusInputContainer}>
+        <TextInput
+          placeholder="Skriv din status..."
+          onChangeText={(text) => setStatusText(text)}
+          value={statusText}
+        />
+        <TextInput
+          placeholder="Dit brugernavn"
+          onChangeText={(text) => setUsername(text)}
+          value={username}
+        />
+        <TouchableOpacity onPress={handleCreateStatus}>
+          <Text>Opret Status</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={klubber}
         keyExtractor={(item) => item.id.toString()}
@@ -155,6 +190,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 10,
+  },
+  statusInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 10,
   },
 });
 
