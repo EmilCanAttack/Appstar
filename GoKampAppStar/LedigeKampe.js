@@ -76,8 +76,8 @@ const LedigeKampe = () => {
 
   // Funktion til at behandle indsendelse af holdoplysninger.
   const handleSubmit = () => {
-    // Gem holdInfo i dataarrayet eller send det til en server (afhængigt af din backend-logik).
-    const id = data.length + 1; // Generer en unik ID (du kan bruge en bedre metode).
+    // Gem holdInfo i dataarrayet 
+    const id = data.length + 1; // Generer en unik ID 
     data.push({ id, ...holdInfo });
     // Nulstil holdoplysningerne.
     setHoldInfo({
