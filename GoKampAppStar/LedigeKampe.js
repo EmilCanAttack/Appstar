@@ -1,64 +1,75 @@
 import React, { useState } from 'react';
-import { View, Text, Image, FlatList, Modal, TextInput, Button, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  Modal,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+} from 'react-native';
 
 const data = [
-    {
-      id: 1,
-      logo: require('./assets/stadium.jpeg'),
-      klubnavn: "Taastrup Idrætsforening",
-      tomtekst: "",
-      dato: '17/11 Kl. 19:30',
-      division: 'Motionsrækken',
-      antalSpillere: '8 mand',
-      kontakt: "Emil Can Atan, (+45) 83 91 03 45",
-      adresse: "Gadehavegårdsvej 1, 2630 Taastrup",
-    },
-    {
-      id: 2,
-      logo: require('./assets/stadium.jpeg'),
-      dato: '15/11 Kl. 19:00',
-      division: 'Division 4',
-      antalSpillere: '11 mand',
-      kontakt: "Lars Dahl, (+45) 23 56 43 12",
-      klubnavn: "Albertslund Idrætsforening",
-      tomtekst: "",
-      adresse: "Skallerne 14, 2620 Albertslund",
-    },
-  ];
+  {
+    id: 1,
+    logo: require('./assets/tif.png'),
+    klubnavn: 'Taastrup Idrætsforening',
+    tomtekst: '',
+    dato: '15/11 Kl. 19:30',
+    division: 'Motionsrækken',
+    antalSpillere: '8 mand',
+    kontakt: 'Emil Can Atan, Nr. 83 91 03 45',
+    adresse: 'Gadehavegårdsvej 1, 2630 Taastrup',
+  },
+  {
+    id: 2,
+    logo: require('./assets/fhf.png'),
+    dato: '17/11 Kl. 19:00',
+    division: 'Division 4',
+    antalSpillere: '11 mand',
+    kontakt: 'Lars Dahl, Nr. 23 56 43 12',
+    klubnavn: 'Fløng-Hedehusene Fodbold',
+    tomtekst: '',
+    adresse: 'Stenbuen 34, 2640 Hedehusene',
+  },
+];
 
 const sjællandClubs = [
-  { name: 'Klub 1', logo: require('./assets/stadium.jpeg') },
-  { name: 'Klub 2', logo: require('./assets/stadium.jpeg') },
-  { name: 'Hvidovre', logo: require('./assets/banen.jpeg') },
-  { name: 'Klub 4', logo: require('./assets/stadium.jpeg') },
-  { name: 'Klub 5', logo: require('./assets/stadium.jpeg') },
+  { name: 'Hvidovre IF.', logo: require('./assets/hif.png') },
+  { name: 'Brøndby IF.', logo: require('./assets/bif.png') },
+  { name: 'FC. København', logo: require('./assets/fck.png') },
+  { name: 'Fløng-Hedehusene Fodbold', logo: require('./assets/fhf.png') },
+  { name: 'Taastrup IF.', logo: require('./assets/tif.png') },
   // Tilføj flere klubber og deres logoer på Sjælland efter behov
 ];
 
 const jyllandClubs = [
-  { name: 'Klub A', logo: require('./assets/stadium.jpeg') },
-  { name: 'Klub B', logo: require('./assets/stadium.jpeg') },
-  { name: 'Klub C', logo: require('./assets/stadium.jpeg') },
-  { name: 'Klub D', logo: require('./assets/stadium.jpeg') },
-  { name: 'Klub E', logo: require('./assets/stadium.jpeg') },
+  { name: 'FC. Midtjylland ', logo: require('./assets/fcm.png') },
+  { name: 'Randers FC.', logo: require('./assets/rfc.png') },
+  { name: 'Aalborg BK', logo: require('./assets/aab.png') },
+  { name: 'FC. Nordsjælland', logo: require('./assets/fcn.png') },
+  { name: 'Aarhus GF.', logo: require('./assets/agf.png') },
   // Tilføj de 5 største klubber i Jylland
 ];
 
 const LedigeKampe = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [holdInfo, setHoldInfo] = useState({
-    klubnavn: "",
-    dato: "",
-    division: "",
-    antalSpillere: "",
-    kontakt: "",
-    adresse: "",
+    klubnavn: '',
+    dato: '',
+    division: '',
+    antalSpillere: '',
+    kontakt: '',
+    adresse: '',
     selectedClub: null,
   });
   const [selectedRegion, setSelectedRegion] = useState(null);
 
   const handleClubSelect = (club) => {
-    setHoldInfo({ ...holdInfo, selectedClub: club });
+    setHoldInfo({ ...holdInfo, selectedClub: club, logo: club.logo }); // Gem også klublogoet i holdInfo
   };
 
   const handleSubmit = () => {
@@ -66,23 +77,21 @@ const LedigeKampe = () => {
     const id = data.length + 1; // Generer en unik ID (du kan bruge en bedre metode)
     data.push({ id, ...holdInfo });
     setHoldInfo({
-      klubnavn: "",
-      dato: "",
-      division: "",
-      antalSpillere: "",
-      kontakt: "",
-      adresse: "",
+      klubnavn: '',
+      dato: '',
+      division: '',
+      antalSpillere: '',
+      kontakt: '',
+      adresse: '',
       selectedClub: null,
+      logo: null, // Nulstil logo
     });
     setSelectedRegion(null);
     setModalVisible(false); // Luk modalen efter indsendelse
   };
 
   return (
-    <ImageBackground
-      source={require('./assets/sortbane.jpeg')} // Tilføj stien til dit baggrundsbillede
-      style={styles.backgroundImage}
-    >
+    <ImageBackground source={require('./assets/sortbane.jpeg')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.title}>Ledige Kampe</Text>
         <Button title="Tilmeld Hold" onPress={() => setModalVisible(true)} />
@@ -91,7 +100,7 @@ const LedigeKampe = () => {
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <View style={styles.itemContainer}>
-              <Image source={item.selectedClub ? item.selectedClub.logo : require('./assets/stadium.jpeg')} style={styles.logo} />
+              <Image source={item.logo} style={styles.logo} />
               <Text style={styles.text}>{item.klubnavn}</Text>
               <Text style={styles.text}>{item.tomtekst}</Text>
               <Text style={styles.text}>Vil gerne spille d. {item.dato} </Text>
@@ -160,7 +169,7 @@ const LedigeKampe = () => {
                   onChangeText={(text) => setHoldInfo({ ...holdInfo, adresse: text })}
                 />
               </View>
-              <Text style={styles.label}>Vælg Region:</Text>
+              <Text style={styles.label}>Vælg klubbens logo:</Text>
               <Button title="Sjælland" onPress={() => setSelectedRegion(sjællandClubs)} />
               <Button title="Jylland" onPress={() => setSelectedRegion(jyllandClubs)} />
               {selectedRegion && (
@@ -196,6 +205,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 10,
     textAlign: 'center',
+    color: 'white',
   },
   itemContainer: {
     backgroundColor: 'rgba(255, 255, 255, 0.8)', // Gennemsigtig hvid baggrund
