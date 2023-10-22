@@ -30,7 +30,7 @@ const Home = ({ navigation }) => {
       <Text style={styles.title}></Text>
       <Text style={styles.title}></Text>
       <Text style={styles.title}></Text>
-        <Text style={styles.title}>Welcome to the Homepage</Text>
+        <Text style={styles.title}>Velkommen til Go' Kamp</Text>
         <View style={styles.buttonsContainer}>
           <Button title="Ledige Kampe" onPress={() => navigation.navigate('LedigeKampe')} />
           <Button title="Forum" onPress={() => navigation.navigate('Forum')} />

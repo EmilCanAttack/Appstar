@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image, TextInput, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Image, TextInput, StyleSheet, ImageBackground } from 'react-native';
 
 const klubberData = [
   {
@@ -9,7 +9,7 @@ const klubberData = [
     likes: 5,
     comments: [
       { id: 1, text: "Jeg vil gerne tilmelde mig som målmand!", user: "John" },
-      { id: 2, text: "Hvornår er jeres næste træning?", user: "Anna" },
+      { id: 2, text: "Hvad er der sket med jeres tideligere målmand?", user: "Zaid" },
     ],
   },
   {
@@ -19,19 +19,22 @@ const klubberData = [
     likes: 10,
     comments: [
       { id: 3, text: "Kan jeg deltage som nybegynder?", user: "Peter" },
+      { id: 4, text: "Hej Peter. Desværre nej 😢", user: "Lasse" },
     ],
   },
   {
     id: 3,
-    klubnavn: "Klub 1",
-    status: "Vi har brug for flere spillere til vores 8-mands hold. Tilmeld dig nu!",
+    klubnavn: "Lars",
+    status: "Nogen som har en bane til rådighed? Vi fra FHF mangler et sted at træne",
     likes: 2,
-    comments: [],
+    comments: [
+        { id: 5, text: "Gadehavegård plejer at stå tomt", user: "Mikkel" },
+    ],
   },
   {
     id: 4,
-    klubnavn: "Klub A",
-    status: "Vi søger frivillige trænere til vores ungdomshold. Kom og hjælp med at udvikle vores talenter!",
+    klubnavn: "Søren Dollerup",
+    status: "Vi hos FCK søger frivillige trænere til vores ungdomshold. Kom og hjælp med at udvikle vores talenter!",
     likes: 7,
     comments: [],
   },
@@ -41,8 +44,8 @@ const klubberData = [
 const Forum = () => {
   const [klubber, setKlubber] = useState(klubberData);
   const [commentText, setCommentText] = useState("");
-  const [username, setUsername] = useState(""); // Tilføj en state til at opbevare brugernavnet
-  const [statusText, setStatusText] = useState(""); // Tilføj en state til at opbevare brugernes egne opslag
+  const [username, setUsername] = useState("");
+  const [statusText, setStatusText] = useState("");
 
   const handleLike = (klubId) => {
     const updatedKlubber = klubber.map((klub) => {
@@ -57,7 +60,6 @@ const Forum = () => {
 
   const handleComment = (klubId, comment) => {
     if (!username) {
-      // Vis en fejlbesked eller bloker handlingen, hvis brugernavnet ikke er angivet
       return;
     }
 
@@ -75,7 +77,6 @@ const Forum = () => {
 
   const handleCreateStatus = () => {
     if (!username || !statusText) {
-      // Vis en fejlbesked eller bloker handlingen, hvis brugernavn eller status ikke er angivet
       return;
     }
 
@@ -93,60 +94,62 @@ const Forum = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Klubbernes Forum</Text>
-      <View style={styles.statusInputContainer}>
-        <TextInput
-          placeholder="Skriv din status..."
-          onChangeText={(text) => setStatusText(text)}
-          value={statusText}
-        />
-        <TextInput
-          placeholder="Dit brugernavn"
-          onChangeText={(text) => setUsername(text)}
-          value={username}
-        />
-        <TouchableOpacity onPress={handleCreateStatus}>
-          <Text>Opret Status</Text>
-        </TouchableOpacity>
-      </View>
-      <FlatList
-        data={klubber}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
-            <Text style={styles.klubnavn}>{item.klubnavn}</Text>
-            <Text style={styles.status}>{item.status}</Text>
-            <Text style={styles.likes}>Likes: {item.likes}</Text>
-            <TouchableOpacity onPress={() => handleLike(item.id)}>
-              <Text>Like</Text>
-            </TouchableOpacity>
-            {item.comments.map((comment) => (
-              <View key={comment.id} style={styles.commentContainer}>
-                <Text style={styles.commentText}>{comment.user}: {comment.text}</Text>
-              </View>
-            ))}
-            <View style={styles.commentInputContainer}>
-              <TextInput
-                placeholder="Skriv en kommentar..."
-                onChangeText={(text) => setCommentText(text)}
-                value={commentText}
-              />
-              <TextInput
-                placeholder="Dit brugernavn"
-                onChangeText={(text) => setUsername(text)}
-                value={username}
-              />
-              <TouchableOpacity
-                onPress={() => handleComment(item.id, commentText)}
-              >
-                <Text>Send</Text>
+    <ImageBackground source={require('./assets/wfu.webp')} style={styles.backgroundImage}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Klubbernes Forum</Text>
+        <View style={styles.statusInputContainer}>
+          <TextInput
+            placeholder="Hvad har du på hjertet?..."
+            onChangeText={(text) => setStatusText(text)}
+            value={statusText}
+          />
+          <TextInput
+            placeholder="Navn"
+            onChangeText={(text) => setUsername(text)}
+            value={username}
+          />
+          <TouchableOpacity onPress={handleCreateStatus}>
+            <Text>Opret Status</Text>
+          </TouchableOpacity>
+        </View>
+        <FlatList
+          data={klubber}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.itemContainer}>
+              <Text style={styles.klubnavn}>{item.klubnavn}</Text>
+              <Text style={styles.status}>{item.status}</Text>
+              <Text style={styles.likes}>Likes: {item.likes}</Text>
+              <TouchableOpacity onPress={() => handleLike(item.id)}>
+                <Text>Like</Text>
               </TouchableOpacity>
+              {item.comments.map((comment) => (
+                <View key={comment.id} style={styles.commentContainer}>
+                  <Text style={styles.commentText}>{comment.user}: {comment.text}</Text>
+                </View>
+              ))}
+              <View style={styles.commentInputContainer}>
+                <TextInput
+                  placeholder="Skriv en kommentar..."
+                  onChangeText={(text) => setCommentText(text)}
+                  value={commentText}
+                />
+                <TextInput
+                  placeholder="Dit brugernavn"
+                  onChangeText={(text) => setUsername(text)}
+                  value={username}
+                />
+                <TouchableOpacity
+                  onPress={() => handleComment(item.id, commentText)}
+                >
+                  <Text>Send</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        )}
-      />
-    </View>
+          )}
+        />
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -196,6 +199,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 10,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
   },
 });
 

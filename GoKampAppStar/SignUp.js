@@ -7,18 +7,25 @@ const SignUp = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const handleSignUp = async () => {
-    // Gem brugeroplysninger i AsyncStorage som JSON
+    if (!email || !password) {
+      // Check if either email or password is empty, and display an error message if true.
+      alert('Both email and password are required.');
+      return;
+    }
+
+    // If both email and password are provided, proceed with sign-up.
+    // Save user information in AsyncStorage as JSON.
     const user = { email, password };
     await AsyncStorage.setItem('user', JSON.stringify(user));
 
-    // Naviger til Login-skærmen
+    // Navigate to the Login screen.
     navigation.navigate('Login');
   };
 
   const handleLogin = async () => {
-    // Tilføj logik til at logge ud her, f.eks. rydning af AsyncStorage-data
+    // Add logout logic here, for example, clearing AsyncStorage data.
 
-    // Naviger tilbage til SignUp-skærmen (eller en anden skærm efter din logik)
+    // Navigate back to the SignUp screen or another screen based on your logic.
     navigation.navigate('Login');
   };
 
@@ -42,9 +49,9 @@ const SignUp = ({ navigation }) => {
         <TouchableOpacity style={styles.signupButton} onPress={handleSignUp}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
-        <Text style={styles.loginText}>Er du allerede på Go' Kamp?</Text>
+        <Text style={styles.loginText}>Already on Go' Kamp?</Text>
         <TouchableOpacity onPress={handleLogin}>
-          <Text style={styles.loginButton}>Log Ind</Text>
+          <Text style={styles.loginButton}>Log In</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
