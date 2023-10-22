@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   loginButton: {
-    backgroundColor: 'blue',
+    backgroundColor: 'green',
     width: '80%',
     padding: 10,
     borderRadius: 5,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   signupButton: {
-    color: 'blue',
+    color: 'green',
     fontSize: 16,
   },
 });

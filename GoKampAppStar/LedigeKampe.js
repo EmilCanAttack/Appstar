@@ -25,6 +25,17 @@ const data = [
     kontakt: 'Emil Can Atan, Nr. 83 91 03 45',
     adresse: 'Gadehavegårdsvej 1, 2630 Taastrup',
   },
+  {
+    id: 2,
+    logo: require('./assets/fhf.png'),
+    dato: '17/11 Kl. 19:00',
+    division: 'Division 4',
+    antalSpillere: '11 mand',
+    kontakt: 'Lars Dahl, Nr. 23 56 43 12',
+    klubnavn: 'Fløng-Hedehusene Fodbold',
+    tomtekst: '', 
+    adresse: 'Stenbuen 34, 2640 Hedehusene',
+  },
   // ... tilføj flere kampoplysninger som nødvendigt.
 ];
 
@@ -32,13 +43,17 @@ const data = [
 const sjællandClubs = [
   { name: 'Hvidovre IF.', logo: require('./assets/hif.png') },
   { name: 'Brøndby IF.', logo: require('./assets/bif.png') },
-  // ... tilføj flere klubber og logoer i Sjælland.
+  { name: 'FC. København', logo: require('./assets/fck.png') },
+  { name: 'Fløng-Hedehusene Fodbold', logo: require('./assets/fhf.png') },
+  { name: 'Taastrup IF.', logo: require('./assets/tif.png') },
 ];
 
 const jyllandClubs = [
   { name: 'FC. Midtjylland ', logo: require('./assets/fcm.png') },
   { name: 'Randers FC.', logo: require('./assets/rfc.png') },
-  // ... tilføj de 5 største klubber i Jylland.
+  { name: 'Aalborg BK', logo: require('./assets/aab.png') },
+  { name: 'FC. Nordsjælland', logo: require('./assets/fcn.png') },
+  { name: 'Aarhus GF.', logo: require('./assets/agf.png') },
 ];
 
 const LedigeKampe = () => {
@@ -84,7 +99,7 @@ const LedigeKampe = () => {
     <ImageBackground source={require('./assets/sortbane.jpeg')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.title}>Ledige Kampe</Text>
-        <Button title="Tilmeld Hold" onPress={() => setModalVisible(true)} />
+        <Button title="Tilmeld Hold" onPress={() => setModalVisible(true)} color="green" />
 
         {/* Vis en liste over ledige kampe fra dataarrayet. */}
         <FlatList
@@ -108,7 +123,7 @@ const LedigeKampe = () => {
         <Modal visible={modalVisible} transparent animationType="slide">
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              <Text style={styles.modalTitle}>Tilmeld Hold</Text>
+              <Text style={styles.modalTitle}>Tilmeld Hold </Text>
 
               {/* Inputfelter til at indtaste holdoplysninger. */}
               <View style={styles.formGroup}>
@@ -169,9 +184,9 @@ const LedigeKampe = () => {
               <Text style={styles.label}>Vælg klubbens logo:</Text>
               <Button title="Sjælland" onPress={() => setSelectedRegion(sjællandClubs)} />
               <Button title="Jylland" onPress={() => setSelectedRegion(jyllandClubs)} />
-
-              {/* Vis klubber i den valgte region til at vælge et klublogo. */}
               {selectedRegion && (
+/* `<FlatList>`-komponenten bruges til at gengive en liste over elementer i en dejlig rulbar visning.
+                I dette tilfælde bruges den til at gengive en liste over klubber i den valgte region. */
                 <FlatList
                   data={selectedRegion}
                   keyExtractor={(item) => item.name}

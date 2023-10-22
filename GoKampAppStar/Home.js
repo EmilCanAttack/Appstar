@@ -25,13 +25,20 @@ const Home = ({ navigation }) => {
       style={styles.backgroundImage}
     >
       <View style={styles.container}>
+      <Text style={styles.title}></Text>
+      <Text style={styles.title}></Text>
+      <Text style={styles.title}></Text>
+      <Text style={styles.title}></Text>
+      <Text style={styles.title}></Text>
+      <Text style={styles.title}></Text>
+      <Text style={styles.title}></Text>
         <Text style={styles.title}>Velkommen til Go' Kamp</Text>
         <View style={styles.buttonsContainer}>
           {/* Knapper til at navigere til forskellige skærme. */}
-          <Button title="Ledige Kampe" onPress={() => navigation.navigate('LedigeKampe')} />
-          <Button title="Forum" onPress={handleForum} />
-          <Button title="Resultater" onPress={() => navigation.navigate('Resultater')} />
-          <Button title="Log Ud" onPress={handleLogout} />
+          <Button title="Ledige Kampe" onPress={() => navigation.navigate('LedigeKampe')} color="green" />
+          <Button title="Forum" onPress={handleForum} color="green" />
+          <Button title="Resultater" onPress={() => navigation.navigate('Resultater')} color="green" />
+          <Button title="Log Ud" onPress={handleLogout} color="green" />
         </View>
       </View>
     </ImageBackground>
