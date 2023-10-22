@@ -14,6 +14,12 @@ const SignUp = ({ navigation }) => {
     // Naviger til Login-skærmen
     navigation.navigate('Login');
   };
+  const handleLogin = async () => {
+    // Tilføj logik til at logge ud her, f.eks. rydning af AsyncStorage-data
+
+    // Naviger tilbage til SignUp-skærmen (eller en anden skærm efter din logik)
+    navigation.navigate('Login');
+  };
 
   return (
     <View>
@@ -30,6 +36,8 @@ const SignUp = ({ navigation }) => {
         secureTextEntry
       />
       <Button title="Sign Up" onPress={handleSignUp} />
+      <Text></Text>
+      <Button title="Jeg har en eksisterende bruger" onPress={handleLogin} />
     </View>
   );
 };
