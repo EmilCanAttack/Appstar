@@ -36,6 +36,7 @@ const Home = ({ navigation }) => {
         <View style={styles.buttonsContainer}>
           {/* Knapper til at navigere til forskellige skærme. */}
           <Button title="Ledige Kampe" onPress={() => navigation.navigate('LedigeKampe')} color="green" />
+          <Button title="Ledige Baner" onPress={() => navigation.navigate('LedigeBaner')} color="green" />
           <Button title="Forum" onPress={handleForum} color="green" />
           <Button title="Resultater" onPress={() => navigation.navigate('Resultater')} color="green" />
           <Button title="Log Ud" onPress={handleLogout} color="green" />

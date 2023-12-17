@@ -118,7 +118,7 @@ const Forum = () => {
             <Text>Opret Status</Text>
           </TouchableOpacity>
         </View>
-        <FlatList
+        <FlatList 
           data={klubber}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
