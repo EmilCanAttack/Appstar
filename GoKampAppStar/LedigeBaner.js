@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
+  Alert,
 } from 'react-native';
 
-// Data til at vise ledige kampe (eksempler).
 const data = [
   {
     id: 1,
@@ -19,6 +19,7 @@ const data = [
     Størrelse: '11 & 8 Mands',
     TypeGræs: 'Kunstgræs',
     adresse: 'Gadehavegårdsvej 1, 2630 Taastrup',
+    reservedSlots: [],
   },
   {
     id: 2,
@@ -28,34 +29,30 @@ const data = [
     Størrelse: '11 Mands',
     TypeGræs: 'Alm. græs',
     adresse: 'Sollentuna Alle 1, 2650 Hvidovre',
+    reservedSlots: [],
   },
-  // ... tilføj flere kampoplysninger som nødvendigt.
+  // Add more data as needed.
 ];
 
-const LedigeKampe = () => {
-  const [holdInfo, setHoldInfo] = useState({
-    klubnavn: '',
-    dato: '',
-    størrelse: '',
-    TypeGræs: '',
-    kontakt: '',
-    adresse: '',
-    selectedClub: null,
-  });
-  const [selectedRegion, setSelectedRegion] = useState(null);
+const timeSlots = ['17:00', '19:00', '19:30', '21:30', '22:00'];
 
-  // Funktion til at vælge en klub for et hold.
-  const handleClubSelect = (club) => {
-    setHoldInfo({ ...holdInfo, selectedClub: club, logo: club.logo });
+const LedigeKampe = () => {
+  const [reservedTimeSlots, setReservedTimeSlots] = useState([]);
+
+  const handleTimeSlotPress = (item, time) => {
+    if (reservedTimeSlots.includes(`${item.id}-${time}`)) {
+      Alert.alert('Fejl', 'Denne tid er allerede reserveret.');
+    } else {
+      Alert.alert('Success', 'Reservationen lykkedes!');
+      setReservedTimeSlots([...reservedTimeSlots, `${item.id}-${time}`]);
+    }
   };
 
   return (
-    // Brug et baggrundsbillede til hele skærmen.
     <ImageBackground source={require('./assets/sortbane.jpeg')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.title}>Ledige Baner</Text>
 
-        {/* Vis en liste over ledige kampe fra dataarrayet. */}
         <FlatList
           data={data}
           keyExtractor={(item) => item.id.toString()}
@@ -68,26 +65,21 @@ const LedigeKampe = () => {
               <Text style={styles.text}>Størrelse: {item.Størrelse}</Text>
               <Text style={styles.text}>Type græs: {item.TypeGræs}</Text>
 
-              {/* "Book Now" button hardcoded med ledige times */}
               <View style={styles.bookNowButtonContainer}>
                 <Text style={styles.label}>Ledige Tider:</Text>
                 <View style={styles.availableTimesContainer}>
-                  <TouchableOpacity style={styles.bookNowButton}>
-                    <Text style={styles.bookNowButtonText}>17:00</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.bookNowButton}>
-                    <Text style={styles.bookNowButtonText}>19:00</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.bookNowButton}>
-                    <Text style={styles.bookNowButtonText}>19:30</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.bookNowButton}>
-                    <Text style={styles.bookNowButtonText}>21:30</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.bookNowButton}>
-                    <Text style={styles.bookNowButtonText}>22:00</Text>
-                  </TouchableOpacity>
-                  {/* Add more times as needed */}
+                  {timeSlots.map((time) => (
+                    <TouchableOpacity
+                      key={time}
+                      style={[
+                        styles.bookNowButton,
+                        reservedTimeSlots.includes(`${item.id}-${time}`) && { backgroundColor: 'grey' },
+                      ]}
+                      onPress={() => handleTimeSlotPress(item, time)}
+                    >
+                      <Text style={styles.bookNowButtonText}>{time}</Text>
+                    </TouchableOpacity>
+                  ))}
                 </View>
               </View>
             </View>
@@ -99,7 +91,6 @@ const LedigeKampe = () => {
 };
 
 const styles = StyleSheet.create({
-  // Stilark for forskellige elementer i komponenten.
   container: {
     flex: 1,
     padding: 16,
@@ -111,11 +102,11 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   itemContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Gennemsigtig hvid baggrund.
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     padding: 10,
     marginBottom: 10,
     borderRadius: 5,
-    alignItems: 'center', // Centrer indhold vandret.
+    alignItems: 'center',
   },
   logo: {
     width: 1000,
