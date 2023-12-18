@@ -15,7 +15,7 @@ const Login = ({ navigation }) => {
       const storedUser = JSON.parse(storedUserJSON);
       if (storedUser.email === email && storedUser.password === password) {
         // Brugervalidering er vellykket, naviger til hjemmesiden.
-        navigation.navigate('Home');
+        navigation.navigate('GoKamp');
       } else {
         // Vis en fejlbesked, hvis email eller adgangskode er forkert.
         alert('Forkert email eller adgangskode');

@@ -8,6 +8,7 @@ import LedigeKampe from './LedigeKampe';
 import Forum from './Forum';
 import Resultater from './Resultater';
 import LedigeBaner from './LedigeBaner';
+import GoKamp from './GoKamp';
 
 // Opret en navigation stack til at håndtere forskellige skærme.
 const Stack = createStackNavigator();
@@ -24,6 +25,7 @@ export default function App() {
         <Stack.Screen name="Resultater" component={Resultater} />
         <Stack.Screen name="Forum" component={Forum} />
         <Stack.Screen name="LedigeBaner" component={LedigeBaner} />
+        <Stack.Screen name="GoKamp" component={GoKamp} />
       </Stack.Navigator>
     </NavigationContainer>
   );

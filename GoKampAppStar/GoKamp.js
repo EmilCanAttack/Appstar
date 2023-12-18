@@ -32,13 +32,14 @@ const Home = ({ navigation }) => {
       <Text style={styles.title}></Text>
       <Text style={styles.title}></Text>
       <Text style={styles.title}></Text>
-        <Text style={styles.title}>FODBOLD</Text>
+        <Text style={styles.title}>Velkommen til Go' Kamp</Text>
         <View style={styles.buttonsContainer}>
           {/* Knapper til at navigere til forskellige skærme. */}
-          <Button title="Ledige Kampe" onPress={() => navigation.navigate('LedigeKampe')} color="green" />
-          <Button title="Ledige Baner" onPress={() => navigation.navigate('LedigeBaner')} color="green" />
-          <Button title="Forum" onPress={handleForum} color="green" />
-          <Button title="Resultater" onPress={() => navigation.navigate('Resultater')} color="green" />
+          <Button title="Fodbold" onPress={() => navigation.navigate('Home')} color="green" />
+          
+          <Button title="Paddel" onPress={() => navigation.navigate('')} color="green" />
+          <Button title="Basketball" onPress={() => navigation.navigate('')} color="green" />
+          <Button title="" onPress={() => navigation.navigate('')} color="green" />
           <Button title="Log Ud" onPress={handleLogout} color="green" />
         </View>
       </View>
