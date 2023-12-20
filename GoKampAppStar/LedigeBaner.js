@@ -61,9 +61,9 @@ const LedigeKampe = () => {
               <Image source={item.logo} style={styles.logo} />
               <Text style={styles.text}>{item.klubnavn}</Text>
               <Text style={styles.text}>{item.tomtekst}</Text>
-              <Text style={styles.text}>Adresse: {item.adresse}</Text>
               <Text style={styles.text}>Størrelse: {item.Størrelse}</Text>
               <Text style={styles.text}>Type græs: {item.TypeGræs}</Text>
+              <Text style={styles.text}>Adresse: {item.adresse}</Text>
 
               <View style={styles.bookNowButtonContainer}>
                 <Text style={styles.label}>Ledige Tider:</Text>

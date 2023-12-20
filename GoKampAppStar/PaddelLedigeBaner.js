@@ -13,22 +13,22 @@ import {
 const data = [
   {
     id: 1,
-    logo: require('./assets/bane1.jpeg'),
-    klubnavn: 'Gadehavegård Kuntsgræs',
+    logo: require('./assets/tpaddel.jpeg'),
+    klubnavn: 'Paddelbane Tåstrup',
     tomtekst: '',
-    Størrelse: '11 & 8 Mands',
-    TypeGræs: 'Kunstgræs',
-    adresse: 'Gadehavegårdsvej 1, 2630 Taastrup',
+    Størrelse: 'Double',
+    Type: 'Uddendørs',
+    adresse: 'Parkvej 78, 2630 Taastrup',
     reservedSlots: [],
   },
   {
     id: 2,
-    logo: require('./assets/bane2.jpeg'),
-    klubnavn: 'Hvidovre IF',
+    logo: require('./assets/roskildepaddel.jpeg'),
+    klubnavn: 'Padelpit',
     tomtekst: '',
-    Størrelse: '11 Mands',
-    TypeGræs: 'Alm. græs',
-    adresse: 'Sollentuna Alle 1, 2650 Hvidovre',
+    Størrelse: 'Double',
+    Type: 'Indendørs',
+    adresse: 'Københavnsvej 136B, 4000 Roskilde',
     reservedSlots: [],
   },
   // Add more data as needed.
@@ -61,9 +61,9 @@ const LedigeKampe = () => {
               <Image source={item.logo} style={styles.logo} />
               <Text style={styles.text}>{item.klubnavn}</Text>
               <Text style={styles.text}>{item.tomtekst}</Text>
-              <Text style={styles.text}>Adresse: {item.adresse}</Text>
               <Text style={styles.text}>Størrelse: {item.Størrelse}</Text>
-              <Text style={styles.text}>Type græs: {item.TypeGræs}</Text>
+              <Text style={styles.text}> Bane: {item.Type}</Text>
+              <Text style={styles.text}>Adresse: {item.adresse}</Text>
 
               <View style={styles.bookNowButtonContainer}>
                 <Text style={styles.label}>Ledige Tider:</Text>
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 1000,
+    width: 250,
     height: 150,
     resizeMode: 'contain',
   },
