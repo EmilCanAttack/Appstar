@@ -15,7 +15,7 @@ const Home = ({ navigation }) => {
     // Tilføj logik til at navigere til Forum-skærmen her.
 
     // Naviger til Forum-skærmen 
-    navigation.navigate('Forum');
+    navigation.navigate('BasketballForum');
   };
 
   return (
@@ -32,15 +32,13 @@ const Home = ({ navigation }) => {
       <Text style={styles.title}></Text>
       <Text style={styles.title}></Text>
       <Text style={styles.title}></Text>
-        <Text style={styles.title}>Velkommen til Go' Kamp</Text>
+        <Text style={styles.title}>BASKETBALL</Text>
         <View style={styles.buttonsContainer}>
           {/* Knapper til at navigere til forskellige skærme. */}
-          <Button title="Fodbold" onPress={() => navigation.navigate('Home')} color="green" />
-          
-          <Button title="Paddel" onPress={() => navigation.navigate('Paddel')} color="green" />
-          <Button title="Basketball" onPress={() => navigation.navigate('Basketball')} color="green" />
-          <Button title="" onPress={() => navigation.navigate('')} color="green" />
-          <Button title="Log Ud" onPress={handleLogout} color="green" />
+          <Button title="Ledige Kampe" onPress={() => navigation.navigate('BasketballLedigeKampe')} color="green" />
+          <Button title="Ledige Baner" onPress={() => navigation.navigate('BasketballLedigeBaner')} color="green" />
+          <Button title="Forum" onPress={handleForum} color="green" />
+          <Button title="Resultater" onPress={() => navigation.navigate('BasketballResultater')} color="green" />
         </View>
       </View>
     </ImageBackground>

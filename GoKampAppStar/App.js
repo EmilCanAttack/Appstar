@@ -14,6 +14,11 @@ import PaddelLedigeBaner from './PaddelLedigeBaner'
 import PaddelLedigeKampe from './PaddelLedigeKampe'
 import PaddelForum from './PaddelForum'
 import PaddelResultater from './PaddelResultater'
+import Basketball from './Basketball';
+import BasketballLedigeBaner from './BasketballLedigeBaner'
+import BasketballLedigeKampe from './BasketballLedigeKampe'
+import BasketballForum from './BasketballForum'
+import BasketballResultater from './BasketballResultater'
 
 // Opret en navigation stack til at håndtere forskellige skærme.
 const Stack = createStackNavigator();
@@ -32,6 +37,11 @@ export default function App() {
         <Stack.Screen name="LedigeBaner" component={LedigeBaner} />
         <Stack.Screen name="GoKamp" component={GoKamp} />
         <Stack.Screen name="Paddel" component={Paddel} />
+        <Stack.Screen name="BasketballLedigeKampe" component={BasketballLedigeKampe} />
+        <Stack.Screen name="BasketballResultater" component={BasketballResultater} />
+        <Stack.Screen name="BasketballForum" component={BasketballForum} />
+        <Stack.Screen name="BasketballLedigeBaner" component={BasketballLedigeBaner} />
+        <Stack.Screen name="Basketball" component={Basketball} />
         <Stack.Screen name="PaddelLedigeBaner" component={PaddelLedigeBaner} />
         <Stack.Screen name="PaddelLedigeKampe" component={PaddelLedigeKampe} />
         <Stack.Screen name="PaddelResultater" component={PaddelResultater} />
