@@ -4,37 +4,37 @@ import { View, Text, FlatList, TouchableOpacity, Image, TextInput, StyleSheet, I
 const klubberData = [
   {
     id: 1,
-    klubnavn: "Taastrup Idrætsforening",
-    status: "Vi søger en målmand til vores 11-mands hold. Kontakt os, hvis du er interesseret!",
-    likes: 5,
+    klubnavn: "Mike Larry",
+    status: "BMS er på udkig efter en erfaren point guard til den kommende sæson. Kender du nogen, der har skills og spilforståelse? Tag dem med til vores næste træning!",
+    likes: 4,
     comments: [
-      { id: 1, text: "Jeg vil gerne tilmelde mig som målmand!", user: "John" },
-      { id: 2, text: "Hvad er der sket med jeres  målmand?", user: "Zaid" },
+      { id: 1, text: "Jeg vil gerne tilmelde mig som målmand!", user: "Lars" },
+      { id: 2, text: "Målmand? Vi spiller basketball..", user: "Mike Larry" },
     ],
   },
   {
     id: 2,
-    klubnavn: "Albertslund Idrætsforening",
-    status: "Vi træner hver torsdag kl. 18:00. Kom og vær med!",
+    klubnavn: "Bo Sørensen",
+    status: "Albertslund Idrætsforening holder åbent hus for talentudvælgelse på søndag kl. 14:00. Unge talenter mellem 12-18 år er velkomne. Grib chancen for at blive en del af vores talentfulde akademi!",
     likes: 10,
     comments: [
-      { id: 3, text: "Kan jeg deltage som nybegynder?", user: "Peter" },
-      { id: 4, text: "Hej Peter. Desværre nej 😢", user: "Lasse" },
+      { id: 3, text: "Var det ikke Lørdag?", user: "Peter Vermund" },
+      { id: 4, text: "Hej Peter. Det er blevet rykket til på Søndag", user: "Bo Sørensen" },
     ],
   },
   {
     id: 3,
-    klubnavn: "Lars",
-    status: "Nogen som har en bane til rådighed? Vi fra FHF mangler et sted at træne",
+    klubnavn: "Jeremy Fale",
+    status: "Vores hold søger en træningsbane i København til vores næste sæsonforberedelse. Professionelle faciliteter og plads til intens træning er afgørende. Del gerne anbefalinger!",
     likes: 2,
     comments: [
-        { id: 5, text: "Gadehavegård plejer at stå tomt", user: "Mikkel" },
+        { id: 5, text: "Har I overvejet at prøve Københavns Basketballcenter? De har før haft professionelle hold til træning.", user: "Anders Geejl" },
     ],
   },
   {
     id: 4,
-    klubnavn: "Søren Dollerup",
-    status: "Vi hos FCK søger frivillige trænere til vores ungdomshold. Kom og hjælp med at udvikle vores talenter!",
+    klubnavn: "Kim Slcheidt",
+    status: "BK Amger søger en dedikerede trænere til at hjælpe med at udvikle næste generations basketballtalenter. Hvis du har erfaring og passion for at forme unge atleter, så kontakt os for en samtale!",
     likes: 7,
     comments: [],
   },
@@ -102,7 +102,7 @@ const Forum = () => {
   return (
     <ImageBackground source={require('./assets/wfu.webp')} style={styles.backgroundImage}>
       <View style={styles.container}>
-        <Text style={styles.title}>Klubbernes Forum</Text>
+        <Text style={styles.title}>Basket Forum</Text>
         <View style={styles.statusInputContainer}>
           <TextInput
             placeholder="Hvad har du på hjertet?..."

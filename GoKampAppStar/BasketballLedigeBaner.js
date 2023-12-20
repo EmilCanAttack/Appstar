@@ -13,22 +13,22 @@ import {
 const data = [
   {
     id: 1,
-    logo: require('./assets/bane1.jpeg'),
-    klubnavn: 'Gadehavegård Kuntsgræs',
+    logo: require('./assets/indendørsBasket.jpeg'),
+    klubnavn: 'TK idrætscenter',
     tomtekst: '',
-    Størrelse: '11 & 8 Mands',
-    TypeGræs: 'Kunstgræs',
-    adresse: 'Gadehavegårdsvej 1, 2630 Taastrup',
+    Størrelse: 'Full Court',
+    Type: 'Indoors',
+    adresse: 'Parkvej 78, 2630 Taastrup',
     reservedSlots: [],
   },
   {
     id: 2,
-    logo: require('./assets/bane2.jpeg'),
-    klubnavn: 'Hvidovre IF',
+    logo: require('./assets/halfalb.jpeg'),
+    klubnavn: 'Herstedlund Idrætshal',
     tomtekst: '',
-    Størrelse: '11 Mands',
-    TypeGræs: 'Alm. græs',
-    adresse: 'Sollentuna Alle 1, 2650 Hvidovre',
+    Størrelse: 'Half Court',
+    Type: 'Indoors',
+    adresse: 'Nyvej 11, 2620 Albertslund',
     reservedSlots: [],
   },
   // Add more data as needed.
@@ -62,7 +62,7 @@ const LedigeKampe = () => {
               <Text style={styles.text}>{item.klubnavn}</Text>
               <Text style={styles.text}>{item.tomtekst}</Text>
               <Text style={styles.text}>Størrelse: {item.Størrelse}</Text>
-              <Text style={styles.text}>Type græs: {item.TypeGræs}</Text>
+              <Text style={styles.text}>Type: {item.Type}</Text>
               <Text style={styles.text}>Adresse: {item.adresse}</Text>
 
               <View style={styles.bookNowButtonContainer}>
