@@ -9,11 +9,11 @@ import Forum from './Forum';
 import Resultater from './Resultater';
 import LedigeBaner from './LedigeBaner';
 import GoKamp from './GoKamp';
-import Paddel from './Paddel';
-import PaddelLedigeBaner from './PaddelLedigeBaner'
-import PaddelLedigeKampe from './PaddelLedigeKampe'
-import PaddelForum from './PaddelForum'
-import PaddelResultater from './PaddelResultater'
+import Padel from './Padel';
+import PadelLedigeBaner from './PadelLedigeBaner'
+import PadelLedigeKampe from './PadelLedigeKampe'
+import PadelForum from './PadelForum'
+import PadelResultater from './PadelResultater'
 import Basketball from './Basketball';
 import BasketballLedigeBaner from './BasketballLedigeBaner'
 import BasketballLedigeKampe from './BasketballLedigeKampe'
@@ -36,16 +36,16 @@ export default function App() {
         <Stack.Screen name="Forum" component={Forum} />
         <Stack.Screen name="LedigeBaner" component={LedigeBaner} />
         <Stack.Screen name="GoKamp" component={GoKamp} />
-        <Stack.Screen name="Paddel" component={Paddel} />
+        <Stack.Screen name="Padel" component={Padel} />
         <Stack.Screen name="BasketballLedigeKampe" component={BasketballLedigeKampe} />
         <Stack.Screen name="BasketballResultater" component={BasketballResultater} />
         <Stack.Screen name="BasketballForum" component={BasketballForum} />
         <Stack.Screen name="BasketballLedigeBaner" component={BasketballLedigeBaner} />
         <Stack.Screen name="Basketball" component={Basketball} />
-        <Stack.Screen name="PaddelLedigeBaner" component={PaddelLedigeBaner} />
-        <Stack.Screen name="PaddelLedigeKampe" component={PaddelLedigeKampe} />
-        <Stack.Screen name="PaddelResultater" component={PaddelResultater} />
-        <Stack.Screen name="PaddelForum" component={PaddelForum} />
+        <Stack.Screen name="PadelLedigeBaner" component={PadelLedigeBaner} />
+        <Stack.Screen name="PadelLedigeKampe" component={PadelLedigeKampe} />
+        <Stack.Screen name="PadelResultater" component={PadelResultater} />
+        <Stack.Screen name="PadelForum" component={PadelForum} />
       </Stack.Navigator>
     </NavigationContainer>
   );

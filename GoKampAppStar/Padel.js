@@ -15,13 +15,13 @@ const Home = ({ navigation }) => {
     // Tilføj logik til at navigere til Forum-skærmen her. 
 
     // Naviger til Forum-skærmen 
-    navigation.navigate('PaddelForum');
+    navigation.navigate('PadelForum');
   };
 
   return (
     // Brug et baggrundsbillede til hele skærmen.
     <ImageBackground
-      source={require('./assets/boldlys.jpeg')}
+      source={require('./assets/paddel.jpeg')}
       style={styles.backgroundImage}
     >
       <View style={styles.container}>
@@ -32,11 +32,11 @@ const Home = ({ navigation }) => {
       <Text style={styles.title}></Text>
       <Text style={styles.title}></Text>
       <Text style={styles.title}></Text>
-        <Text style={styles.title}>PADDEL</Text>
+        <Text style={styles.title}>PADEL</Text>
         <View style={styles.buttonsContainer}>
           {/* Knapper til at navigere til forskellige skærme. */}
-          <Button title="Ledige Kampe" onPress={() => navigation.navigate('PaddelLedigeKampe')} color="green" />
-          <Button title="Ledige Baner" onPress={() => navigation.navigate('PaddelLedigeBaner')} color="green" />
+          <Button title="Ledige Kampe" onPress={() => navigation.navigate('PadelLedigeKampe')} color="green" />
+          <Button title="Ledige Baner" onPress={() => navigation.navigate('PadelLedigeBaner')} color="green" />
           <Button title="Forum" onPress={handleForum} color="green" />
           <Button title="Log Ud" onPress={handleLogout} color="green" />
         </View>

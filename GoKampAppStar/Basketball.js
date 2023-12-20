@@ -21,7 +21,7 @@ const Home = ({ navigation }) => {
   return (
     // Brug et baggrundsbillede til hele skærmen.
     <ImageBackground
-      source={require('./assets/boldlys.jpeg')}
+      source={require('./assets/basketwall.jpeg')}
       style={styles.backgroundImage}
     >
       <View style={styles.container}>

@@ -49,7 +49,7 @@ const LedigeKampe = () => {
   };
 
   return (
-    <ImageBackground source={require('./assets/sortbane.jpeg')} style={styles.backgroundImage}>
+    <ImageBackground source={require('./assets/basketwall.jpeg')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.title}>Ledige Baner</Text>
 

@@ -44,7 +44,7 @@ const kampe = [
 const Resultater = () => {
   return (
     <ImageBackground
-      source={require('./assets/blackbane.jpeg')} 
+      source={require('./assets/basketwall.jpeg')} 
       style={styles.backgroundImage}
     >
       <ScrollView contentContainerStyle={styles.container}>

@@ -14,7 +14,7 @@ const data = [
   {
     id: 1,
     logo: require('./assets/tpaddel.jpeg'),
-    klubnavn: 'Paddelbane Tåstrup',
+    klubnavn: 'Padelbane Tåstrup',
     tomtekst: '',
     Størrelse: 'Double',
     Type: 'Uddendørs',
@@ -49,7 +49,7 @@ const LedigeKampe = () => {
   };
 
   return (
-    <ImageBackground source={require('./assets/sortbane.jpeg')} style={styles.backgroundImage}>
+    <ImageBackground source={require('./assets/paddel.jpeg')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.title}>Ledige Baner</Text>
 

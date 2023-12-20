@@ -15,7 +15,7 @@ const klubberData = [
   {
     id: 2,
     klubnavn: "Søren Puk",
-    status: "Gratis padel træning hver torsdag kl. 18:00 hos TIK PaddelCenter. Alle niveauer er velkomne! 🏓",
+    status: "Gratis padel træning hver torsdag kl. 18:00 hos TIK padelCenter. Alle niveauer er velkomne! 🏓",
     likes: 10,
     comments: [
       { id: 3, text: "Kan jeg deltage som nybegynder?", user: "Peter Alstrøm" },
@@ -34,7 +34,7 @@ const klubberData = [
   {
     id: 4,
     klubnavn: "Søren Puk",
-    status: "TIK Paddel Center søger erfarne padelspillere til at træne vores ungdomstalenter. Kom og vær en del af udviklingen! 🌟",
+    status: "TIK padel Center søger erfarne padelspillere til at træne vores ungdomstalenter. Kom og vær en del af udviklingen! 🌟",
     likes: 7,
     comments: [],
   },
@@ -102,7 +102,7 @@ const Forum = () => {
   return (
     <ImageBackground source={require('./assets/wfu.webp')} style={styles.backgroundImage}>
       <View style={styles.container}>
-        <Text style={styles.title}>Paddel Forum</Text>
+        <Text style={styles.title}>Padel Forum</Text>
         <View style={styles.statusInputContainer}>
           <TextInput
             placeholder="Hvad har du på hjertet?..."

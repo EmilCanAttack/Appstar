@@ -41,7 +41,8 @@ const data = [
 
 // Logoer og navne på klubber i Sjælland og Jylland (eksempler).
 const sjællandClubs = [
-  {logo: require('./assets/emilsexy.jpeg') },{logo: require('./assets/emilosboat.jpeg') },
+  {logo: require('./assets/emilsexy.jpeg') },
+  {logo: require('./assets/emilosboat.jpeg') },
 ];
 
 
@@ -85,7 +86,7 @@ const LedigeKampe = () => {
 
   return (
     // Brug et baggrundsbillede til hele skærmen.
-    <ImageBackground source={require('./assets/sortbane.jpeg')} style={styles.backgroundImage}>
+    <ImageBackground source={require('./assets/paddel.jpeg')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.title}>Ledige Kampe</Text>
         <Button title="Tilmeld Hold" onPress={() => setModalVisible(true)} color="green" />

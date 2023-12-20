@@ -89,7 +89,7 @@ const LedigeKampe = () => {
 
   return (
     // Brug et baggrundsbillede til hele skærmen.
-    <ImageBackground source={require('./assets/sortbane.jpeg')} style={styles.backgroundImage}>
+    <ImageBackground source={require('./assets/basketwall.jpeg')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.title}>Ledige Kampe</Text>
         <Button title="Tilmeld Hold" onPress={() => setModalVisible(true)} color="green" />
@@ -175,7 +175,7 @@ const LedigeKampe = () => {
               </View>
 
               <Text style={styles.label}>Vælg klubbens logo:</Text>
-              <Button title="Sjælland" onPress={() => setSelectedRegion(sjællandClubs)} />
+              <Button title="Div 1." onPress={() => setSelectedRegion(sjællandClubs)} />
               {selectedRegion && (
 /* `<FlatList>`-komponenten bruges til at gengive en liste over elementer i en dejlig rulbar visning.
                 I dette tilfælde bruges den til at gengive en liste over klubber i den valgte region. */

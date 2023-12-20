@@ -21,7 +21,7 @@ const Home = ({ navigation }) => {
   return (
     // Brug et baggrundsbillede til hele skærmen.
     <ImageBackground
-      source={require('./assets/boldlys.jpeg')}
+      source={require('./assets/run.jpeg')}
       style={styles.backgroundImage}
     >
       <View style={styles.container}>
@@ -37,7 +37,7 @@ const Home = ({ navigation }) => {
           {/* Knapper til at navigere til forskellige skærme. */}
           <Button title="Fodbold" onPress={() => navigation.navigate('Home')} color="green" />
           
-          <Button title="Paddel" onPress={() => navigation.navigate('Paddel')} color="green" />
+          <Button title="Padel" onPress={() => navigation.navigate('Padel')} color="green" />
           <Button title="Basketball" onPress={() => navigation.navigate('Basketball')} color="green" />
           <Button title="" onPress={() => navigation.navigate('')} color="green" />
           <Button title="Log Ud" onPress={handleLogout} color="green" />
