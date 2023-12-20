@@ -9,6 +9,11 @@ import Forum from './Forum';
 import Resultater from './Resultater';
 import LedigeBaner from './LedigeBaner';
 import GoKamp from './GoKamp';
+import Paddel from './Paddel';
+import PaddelLedigeBaner from './PaddelLedigeBaner'
+import PaddelLedigeKampe from './PaddelLedigeKampe'
+import PaddelForum from './PaddelForum'
+import PaddelResultater from './PaddelResultater'
 
 // Opret en navigation stack til at håndtere forskellige skærme.
 const Stack = createStackNavigator();
@@ -26,6 +31,11 @@ export default function App() {
         <Stack.Screen name="Forum" component={Forum} />
         <Stack.Screen name="LedigeBaner" component={LedigeBaner} />
         <Stack.Screen name="GoKamp" component={GoKamp} />
+        <Stack.Screen name="Paddel" component={Paddel} />
+        <Stack.Screen name="PaddelLedigeBaner" component={PaddelLedigeBaner} />
+        <Stack.Screen name="PaddelLedigeKampe" component={PaddelLedigeKampe} />
+        <Stack.Screen name="PaddelResultater" component={PaddelResultater} />
+        <Stack.Screen name="PaddelForum" component={PaddelForum} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -39,7 +39,6 @@ const Home = ({ navigation }) => {
           <Button title="Ledige Baner" onPress={() => navigation.navigate('LedigeBaner')} color="green" />
           <Button title="Forum" onPress={handleForum} color="green" />
           <Button title="Resultater" onPress={() => navigation.navigate('Resultater')} color="green" />
-          <Button title="Log Ud" onPress={handleLogout} color="green" />
         </View>
       </View>
     </ImageBackground>
