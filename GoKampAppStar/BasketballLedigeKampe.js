@@ -16,45 +16,38 @@ import {
 const data = [
   {
     id: 1,
-    logo: require('./assets/tif.png'),
-    klubnavn: 'Taastrup Idrætsforening',
+    logo: require('./assets/bms.png'),
+    klubnavn: 'BMS Herlev',
     tomtekst: '',
-    dato: '15/11 Kl. 19:30',
-    division: 'Motionsrækken',
-    antalSpillere: '8 mand',
-    kontakt: 'Emil Can Atan, Nr. 83 91 03 45',
-    adresse: 'Gadehavegårdsvej 1, 2630 Taastrup',
+    dato: '23/12 Kl. 19:00',
+    division: '1.',
+    Hjemmebane: 'Herlev Basket',
+    kontakt: 'Moe Lester, Nr. 20 45 03 29',
+    adresse: 'Ejbyvej 47, 2740 Skovlunde',
   },
   {
     id: 2,
-    logo: require('./assets/fhf.png'),
-    dato: '17/11 Kl. 19:00',
-    division: 'Division 4',
-    antalSpillere: '11 mand',
-    kontakt: 'Lars Dahl, Nr. 23 56 43 12',
-    klubnavn: 'Fløng-Hedehusene Fodbold',
-    tomtekst: '', 
-    adresse: 'Stenbuen 34, 2640 Hedehusene',
+    logo: require('./assets/værløse.png'),
+    klubnavn: 'Værløse Blue Hawks',
+    tomtekst: '',
+    dato: '30/12 Kl. 18:00',
+    division: '1.',
+    Hjemmebane: 'Værløse Basketball Klub',
+    kontakt: 'Nick Gerr, Nr. 39 91 47 45',
+    adresse: 'Kirke Værløsevej 58',
   },
   // ... tilføj flere kampoplysninger som nødvendigt.
 ];
 
 // Logoer og navne på klubber i Sjælland og Jylland (eksempler).
 const sjællandClubs = [
-  { name: 'Hvidovre IF.', logo: require('./assets/hif.png') },
-  { name: 'Brøndby IF.', logo: require('./assets/bif.png') },
-  { name: 'FC. København', logo: require('./assets/fck.png') },
-  { name: 'Fløng-Hedehusene Fodbold', logo: require('./assets/fhf.png') },
-  { name: 'Taastrup IF.', logo: require('./assets/tif.png') },
+  { name: 'Bakken Bears', logo: require('./assets/BB.png') },
+  { name: 'Randers Cimbria', logo: require('./assets/ja.png') },
+  { name: 'BMS Herlev', logo: require('./assets/bms.png') },
+  { name: 'Svendborg Rabbits', logo: require('./assets/kanin.png') },
+  { name: 'Væreløse Blue Hawks', logo: require('./assets/værløse.png') },
 ];
 
-const jyllandClubs = [
-  { name: 'FC. Midtjylland ', logo: require('./assets/fcm.png') },
-  { name: 'Randers FC.', logo: require('./assets/rfc.png') },
-  { name: 'Aalborg BK', logo: require('./assets/aab.png') },
-  { name: 'FC. Nordsjælland', logo: require('./assets/fcn.png') },
-  { name: 'Aarhus GF.', logo: require('./assets/agf.png') },
-];
 
 const LedigeKampe = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -62,7 +55,7 @@ const LedigeKampe = () => {
     klubnavn: '',
     dato: '',
     division: '',
-    antalSpillere: '',
+    Hjemmebane: '',
     kontakt: '',
     adresse: '',
     selectedClub: null,
@@ -84,7 +77,7 @@ const LedigeKampe = () => {
       klubnavn: '',
       dato: '',
       division: '',
-      antalSpillere: '',
+      Hjemmebane: '',
       kontakt: '',
       adresse: '',
       selectedClub: null,
@@ -112,7 +105,7 @@ const LedigeKampe = () => {
               <Text style={styles.text}>{item.tomtekst}</Text>
               <Text style={styles.text}>Vil gerne spille d. {item.dato} </Text>
               <Text style={styles.text}>Division: {item.division}</Text>
-              <Text style={styles.text}>Antal mand: {item.antalSpillere}</Text>
+              <Text style={styles.text}>Hjemmebane: {item.Hjemmebane}</Text>
               <Text style={styles.text}>Adresse: {item.adresse}</Text>
               <Text style={styles.text}>Kontakt: {item.kontakt}</Text>
             </View>
@@ -154,12 +147,12 @@ const LedigeKampe = () => {
                 />
               </View>
               <View style={styles.formGroup}>
-                <Text style={styles.label}>Antal Spillere:</Text>
+                <Text style={styles.label}>Hjemmebane:</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="Indtast antal spillere"
-                  value={holdInfo.antalSpillere}
-                  onChangeText={(text) => setHoldInfo({ ...holdInfo, antalSpillere: text })}
+                  placeholder="Indtast Hjemmebane"
+                  value={holdInfo.Hjemmebane}
+                  onChangeText={(text) => setHoldInfo({ ...holdInfo, Hjemmebane: text })}
                 />
               </View>
               <View style={styles.formGroup}>
@@ -183,7 +176,6 @@ const LedigeKampe = () => {
 
               <Text style={styles.label}>Vælg klubbens logo:</Text>
               <Button title="Sjælland" onPress={() => setSelectedRegion(sjællandClubs)} />
-              <Button title="Jylland" onPress={() => setSelectedRegion(jyllandClubs)} />
               {selectedRegion && (
 /* `<FlatList>`-komponenten bruges til at gengive en liste over elementer i en dejlig rulbar visning.
                 I dette tilfælde bruges den til at gengive en liste over klubber i den valgte region. */
